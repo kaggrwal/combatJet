@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Jet Storm</title>
+    <link rel="shortcut icon" href="images/128.ico"/>
+    <link rel="stylesheet" href="css/game.css">
+    <script defer src="js/game.js" type="text/javascript"></script>
+        <script>
+            var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
+
+
+
+            dataTransferManager.addEventListener("datarequested", function (e) {
+                // Code to handle event goes here.
+
+
+                var request = e.request;
+                request.data.properties.title = "Feeling like a warrior !!!";
+                request.data.properties.description = "HTML share from Combat Jet Game";
+                var localImage = 'ms-appx:///images/logo.png';
+                var htmlExample = "<p>Here's to some fun with the Combat Jet. If your not playing Combat Jet, then your not really having fun!</p><div><img src=\"" + localImage + "\">.</div>";
+
+                var htmlFormat = Windows.ApplicationModel.DataTransfer.HtmlFormatHelper.createHtmlFormat(htmlExample);
+                request.data.setHtmlFormat(htmlFormat);
+                var streamRef = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(new Windows.Foundation.Uri(localImage));
+                request.data.resourceMap[localImage] = streamRef;
+
+            });
+        </script>
+
+</head>
+<body>
+    <section>
+        <canvas id="canvasBg" width="800" height="500"></canvas>
+        <canvas id="canvasEnemy" width="800" height="500"></canvas>
+        <canvas id="canvasJet" width="800" height="500"></canvas>
+        <canvas id="canvasHUD" width="800" height="500"></canvas>
+        <canvas id="canvasMeteor" width="800" height="500"></canvas>
+         <canvas id="canvasgamend" width="800" height="500"></canvas>
+        </section>
+</body>
+</html>
